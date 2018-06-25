@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<style>
+    .column-left {
+        float: left;
+        width: 50%;
+    }
+    .column-right {
+        float: right;
+        width: 50%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .vl {
+        border-left: 6px solid white;
+        height: 100%;
+        float: left;
+    }
+</style>
+<script>
+
+    function afegirPlat(what) {
+        var list, li, span;
+
+        list = document.getElementById("platsMenu");
+
+        li = document.createElement("li");
+        li.classList.add("w3-display-container");
+        li.innerHTML = what.innerHTML;
+        span = document.createElement("span");
+        span.classList.add("w3-button");
+        span.classList.add("w3-display-right");
+        span.innerHTML = "&times";
+        span.onclick = function () {
+            tornarPlat(span);
+        };
+        li.appendChild(span);
+        list.appendChild(li);
+        what.style.display = 'none';
+
+        //Afegir un id, on poder buscar a la ddbb i afegir d'una llista al backend
+    }
+
+    function tornarPlat(what) {
+        var li, list;
+
+        list = document.getElementById("platsTotals");
+        li = document.createElement("li");
+        li.onclick = function () {
+            afegirPlat(li);
+        };
+        li.innerHTML = what.parentElement.textContent;
+        li.innerText = li.innerText.substr(0, li.innerText.length - 1)
+        list.appendChild(li);
+        what.parentElement.style.display = 'none';
+
+    }
+
+
+    function myFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("platsTotalsSearch");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("platsTotals");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+
+            }
+        }
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Administració</title>
+</head>
+
+<body class="w3-red">
+
+<header class="w3-container w3-red w3-center" style="background-color: black">
+    <a href="index.html">
+        <h1 class="w3-margin w3-jumbo">Hostal Roma</h1 >
+    </a>
+    <p class="w3-xlarge">Crear Menú</p>
+
+</header>
+
+<div class="w3-sidebar w3-bar-block w3-large w3-red">
+    <a href="#" class="w3-bar-item w3-button">Primers Plats</a>
+    <a href="#" class="w3-bar-item w3-button">Segons Plats</a>
+    <a href="#" class="w3-bar-item w3-button">Postres</a>
+    <a href="#" class="w3-bar-item w3-button">Suggeriments</a>
+    <a href="#" class="w3-bar-item w3-button">Vins</a>
+</div>
+
+
+<div class="w3-panel w3-border" style="margin-left:15%; margin-right:5%">
+    <p class="w3-xlarge">Primers Plats</p>
+    <div  class="column-left w3-panel w3-border-right">
+        <input class="w3-input" type="text" id="platsTotalsSearch" onkeyup="myFunction()" placeholder="Buscar primer plat..">
+        <ul id="platsTotals" class="w3-ul w3-hoverable">
+            <li onclick="afegirPlat(this)">Macarrons</li>
+            <li onclick="afegirPlat(this)">Amanida Verda</li>
+            <li onclick="afegirPlat(this)">Caragols a la llauna</li>
+            <li onclick="afegirPlat(this)">Esquixada de bacallà</li>
+            <li onclick="afegirPlat(this)">Cremós de pop</li>
+
+        </ul>
+    </div>
+    <div class="column-right w3-panel w3-border-left">
+        <p class="w3-large">Plats afegits</p>
+        <ul id="platsMenu" class="w3-ul">
+            <li class="w3-display-container">
+                Macarrons
+                <span onclick="tornarPlat(this)"
+                      class="w3-button w3-display-right">&times;</span>
+            </li>
+            <li class="w3-display-container">
+                Macarrons
+                <span onclick="tornarPlat(this)"
+                      class="w3-button w3-display-right">&times;</span>
+            </li>
+            <li class="w3-display-container">
+                Macarrons
+                <span onclick="tornarPlat(this)"
+                      class="w3-button w3-display-right">&times;</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+<link rel="stylesheet" type="text/css" href="buttons.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</html>
