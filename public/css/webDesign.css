@@ -1,0 +1,12 @@
+.header_style {
+    position: fixed;
+    background-color: rgb(211,0,5);
+    margin: 0;
+    overflow:auto;
+    width:100%;
+}
+
+.red_color {
+    color: #fff!important;
+    background-color: rgb(211,0,5);
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+
+{%  block page_css %} {% endblock %}
+<body class="w3-dark-gray">
+
+<div class="sidebar w3-sidebar w3-red w3-bar-block">
+
+    <div class="barTop">
+        {% block bar_top_buttons %} {% endblock %}
+
+    </div>
+
+    <div class="barMid">
+        {% block bar_mid_buttons %} {% endblock %}
+
+    </div>
+
+    <div class="barBottom">
+        {% block bar_bottom_buttons %} {% endblock %}
+        <a href="/" class=" w3-bar-item w3-button w3-red w3-border w3-hover-dark-gray">Enrere</a>
+    </div>
+
+</div>
+<div class="mainPageContent">
+
+
+    {% block main_title %} {% endblock %}
+
+    {% block main_content %} {% endblock %}
+
+
+
+
+
+    <div class="mainBottom">
+        {% block main_buttons %} {% endblock %}
+    </div>
+
+</div>
+
+{% block scripts %} {% endblock %}
+
+
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+<link rel="stylesheet" type="text/css" href="css/webDesign.css" />
+<link rel="stylesheet" type="text/css" href="css/leftSideBarBase.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</body>
+</html>

@@ -5,11 +5,37 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->get(
     '/',
-    'src\controller\LandingPageController'
+    'App\controller\LandingPageController'
+);
+
+$app->get(
+    '/login',
+    'App\controller\LoginPageController'
+);
+
+$app->post(
+    '/login',
+    'App\controller\LoginPageController:loginAction'
+);
+
+$app->get(
+    '/crearMenu',
+    'App\controller\LoginPageController:crearMenuAction'
+);
+
+
+$app->get(
+    '/gestionarPlats',
+    'App\controller\LoginPageController:gestioPlatsAction'
 );
 
 $app->post(
     '/',
-    'Pwbox\controller\LandingController:updateAction'
+    'App\controller\LandingController:updateAction'
+);
+
+$app->post(
+    '/save_dish',
+    'App\controller\LandingPageController:saveDishAction'
 );
 

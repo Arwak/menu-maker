@@ -14,6 +14,9 @@ $container['view'] = function($container) {
     return $view;
 };
 
+$container['test'] = function () {
+    echo "test";
+};
 
 $container['doctrine'] = function ($container) {
     $config = new \Doctrine\DBAL\Configuration();
@@ -26,4 +29,19 @@ $container['doctrine'] = function ($container) {
 
 $container['flash'] = function ($container) {
     return new \Slim\Flash\Messages();
+};
+
+$container['plat_repository'] = function($container) {
+    $repository = new App\model\implementation\DoctrinePlatRepository(
+        $container->get('doctrine')
+    );
+    return $repository;
+};
+
+$container['post_plat_use_case'] = function ($container) {
+    $useCase = new App\model\useCase\PostFileUseCase(
+        $container->get('file_repository')
+    );
+
+    return $useCase;
 };

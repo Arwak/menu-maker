@@ -3,7 +3,7 @@ return [
     'settings' => [
         'displayErrorDetails' => true,
         'database' => [
-            'dbname' => 'PWBOX', //li he dit test al dbname
+            'dbname' => 'menuMaker', //li he dit test al dbname
             'user' => 'homestead',
             'password' => 'secret',
             'host' => 'localhost',

@@ -1,0 +1,259 @@
+{%  extends "leftSideBarBase.twig" %}
+{% block main_title %}
+    <p class="w3-xlarge">Gestionar Plats</p>
+{% endblock %}
+
+{% block main_content %}
+<form action="/save_dish" method="post" id="dish_info">
+    <input name="id" value="1" type="hidden">
+    <table>
+
+        <tr>
+            <td>
+
+                <div class="w3-col s3 w3-blue w3-center w3-border">
+                    <div class="w3-row w3-margin">Alias
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input name="alias" class="w3-input w3-center w3-border" placeholder="Alias" type="text">
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+            <div class="w3-col s3 w3-blue w3-center w3-border">
+                <div class="w3-row w3-margin">Nom
+                </div>
+            </div>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input name="cat_name" class="w3-input w3-center w3-border" placeholder="Nom amb català" type="text">
+                        </td>
+                        <td>
+                            <input name="esp_name" class="w3-input w3-center w3-border" placeholder="Nombre en español" type="text">
+                        </td>
+                        <td>
+                            <input name="eng_name" class="w3-input w3-center w3-border" placeholder="Name in english" type="text">
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                <div class="w3-col s3 w3-blue w3-center w3-border">
+                    <div class="w3-row w3-margin">Ordre
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input class="w3-radio" type="radio" name="ordre_plat" value="1">
+                            <label>1r</label>
+                        </td>
+                        <td>
+                            <input class="w3-radio" type="radio" name="ordre_plat" value="2">
+                            <label>2n</label>
+                        </td>
+                        <td>
+                            <input class="w3-radio" type="radio" name="ordre_plat" value="3">
+                            <label>3r</label>
+                        </td>
+                        <td>
+                            <input class="w3-radio" type="radio" name="ordre_plat" value="4">
+                            <label>Suggeriment</label>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                <div class="w3-col s3 w3-blue w3-center w3-border">
+                    <div class="w3-row w3-margin"> <br> <br> Alergens <br> <br>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table class="w3-table">
+
+                    <tr>
+                        <td>
+                            <input name="1" class="w3-check" type="checkbox">
+                            <label>Gluten - G</label>
+                        </td>
+                        <td>
+                            <input name="2" class="w3-check" type="checkbox">
+                            <label>Crustàci - C</label>
+                        </td>
+                        <td>
+                            <input name="3" class="w3-check" type="checkbox">
+                            <label>Ou - O</label>
+                        </td>
+                        <td>
+                            <input name="4" class="w3-check" type="checkbox">
+                            <label>Peix - P</label>
+                        </td>
+                        <td>
+                            <input name="5" class="w3-check" type="checkbox">
+                            <label>Cacauet - C1</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="6" class="w3-check" type="checkbox">
+                            <label>Soja - S1</label>
+                        </td>
+                        <td>
+                            <input name="7" class="w3-check" type="checkbox">
+                            <label>Làctics - L</label>
+                        </td>
+                        <td>
+                            <input name="8" class="w3-check" type="checkbox">
+                            <label>Fruits closca - F</label>
+                        </td>
+                        <td>
+                            <input name="9" class="w3-check" type="checkbox">
+                            <label>Àpit - A</label>
+                        </td>
+                        <td>
+                            <input name="10" class="w3-check" type="checkbox">
+                            <label>Mostassa - M</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="11" class="w3-check" type="checkbox">
+                            <label>Sésam - S2</label>
+                        </td>
+                        <td>
+                            <input name="12" class="w3-check" type="checkbox">
+                            <label>Tramussos - T</label>
+                        </td>
+                        <td>
+                            <input name="13" class="w3-check" type="checkbox">
+                            <label>Mol·luscs - M</label>
+                        </td>
+                        <td>
+                            <input name="14" class="w3-check" type="checkbox">
+                            <label>Diòxid de sofre i sulfits - D + S</label>
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                <div class="w3-col s3 w3-blue w3-center w3-border">
+                    <div class="w3-row w3-margin">Etiqueta
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table>
+
+                    <tr>
+                        <td>
+                            <select name="tag" class="w3-select w3-border w3-center">
+                                <option>Altres</option>
+                                <option>Carn</option>
+                                <option>Peix</option>
+                                <option>Pasta</option>
+                                <option>Amanida</option>
+                            </select>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                <div class="w3-col s3 w3-blue w3-center w3-border">
+                    <div class="w3-row w3-margin">Preu de Cost
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <label>EUR.</label>
+                            <input name="cost_price" class="w3-input w3-center w3-border" type="number" placeholder="00.00">
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+    </table>
+</form>
+{% endblock %}
+
+{% block main_buttons %}
+    <a href="#" class=" w3-bar-item w3-button w3-red w3-border w3-hover-dark-gray">Cancelar</a>
+    <a onclick="new_dish()" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue">Guardar</a>
+{% endblock %}
+
+
+{% block bar_top_buttons %}
+    <input class="w3-input w3-border w3-round w3-red w3-hover-white" placeholder="Buscar plats" type="text">
+{% endblock %}
+{% block bar_mid_buttons %}
+
+    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Padding</a>
+    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat amb un nom llarg de la ostia com ara caragols a la llauna metalica fets a la brasa amb pebre sal i oli</a>
+    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 4</a>
+    {% for i in 5..50 %}
+        <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat {{ i }}</a>
+    {% endfor %}
+{% endblock %}
+{% block bar_bottom_buttons %}
+    <a href="#" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue"> <i class="fa fa-plus-circle "></i> Nou Plat  </a>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="js/gestionarPlats.js"></script>
+{% endblock %}
+
