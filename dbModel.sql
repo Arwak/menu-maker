@@ -6,15 +6,14 @@ USE MenuMaker;
 CREATE TABLE dish (
 
     id_dish INT AUTO_INCREMENT,
-    alias VARCHAR(255),
+    alias VARCHAR(255) UNIQUE,
     cost_price FLOAT,
     benefits FLOAT,
     net_price FLOAT,
     course_pos INT,
     tag TEXT,
-    PRIMARY KEY (id_dish, alias)
+    PRIMARY KEY (id_dish)
 );
-
 
 CREATE TABLE menu (
 
