@@ -30,20 +30,87 @@ class DoctrinePlatRepository implements PlatRepository
     public function save_dish(Plat $plat)
     {
 
-        $sql = "INSERT INTO Plat(alias, cost_price, benefits, net_price, course_pos, tag)
+        $sql = "INSERT INTO dish(alias, cost_price, benefits, net_price, course_pos, tag)
                 VALUES (:alias, :cost_price, :benefits, :net_price, :course_pos, :tag)";
         $stmt = $this->database->prepare($sql);
         $stmt->bindValue("alias", $plat->get_alias(), 'string');
-        $stmt->bindValue("cost_price", $plat->get_cost_price(), 'float');
-        $stmt->bindValue("benefits", $plat->get_benefits(), 'float');
-        $stmt->bindValue("net_price", $plat->get_net_price(), 'float');
+        $stmt->bindValue("cost_price", $plat->get_cost_price(), 'string');
+        $stmt->bindValue("benefits", $plat->get_benefits(), 'string');
+        $stmt->bindValue("net_price", $plat->get_net_price(), 'string');
         $stmt->bindValue("course_pos", $plat->get_course_pos(), 'integer');
         $stmt->bindValue("tag", $plat->get_tag(), 'string');
         $stmt->execute();
+
+        $sql = "SELECT LAST_INSERT_ID();";
+        $stmt = $this->database->prepare($sql);
+        $stmt->execute();
+
+        $id = $stmt->fetchColumn(0);
+        $allergens = $plat->get_allergens();
+
+        foreach ($allergens as $allergen) {
+            if (is_null($allergen))
+                continue;
+            $sql = "INSERT INTO dish_allergen(id_dish, id_allergen)
+            VALUES (:id_dish, :id_allergen)";
+            $stmt = $this->database->prepare($sql);
+            $stmt->bindValue("id_dish", $id, 'integer');
+            $stmt->bindValue("id_allergen", $allergen, 'integer');
+            $stmt->execute();
+
+        }
+
+
+        $languages = $plat->get_languages();
+
+        foreach ($languages as $language) {
+            if (is_null($language))
+                continue;
+            $sql = "INSERT INTO dish_language(id_dish, id_language, dish_name, dish_description)
+                VALUES (:id_dish, :id_language, :dish_name, :dish_description)";
+            $stmt = $this->database->prepare($sql);
+            $stmt->bindValue("id_dish", (int)$id, 'integer');
+            $stmt->bindValue("id_language", $language['id_language'], 'integer');
+            $stmt->bindValue("dish_name", $language['dish_name'], 'string');
+            $stmt->bindValue("dish_description", $language['dish_description'], 'string');
+            $stmt->execute();
+
+        }
+
+
+
+
     }
 
     public function update_dish(Plat $plat)
     {
+
+    }
+
+    public function get_dishes()
+    {
+        $sql = "SELECT * FROM dish";
+        $stmt = $this->database->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+
+        $dishes[0] = null;
+        $i = 0;
+        foreach ($results as $result) {
+
+            $sql = "SELECT id_allergen FROM dish_allergen WHERE id_dish = " . $result['id_dish'] . ";";
+            $stmt = $this->database->prepare($sql);
+            $stmt->execute();
+            $allergens = $stmt->fetchAll();
+
+            $sql = "SELECT * FROM dish_language WHERE id_dish = " . $result['id_dish'] . ";";
+            $stmt = $this->database->prepare($sql);
+            $stmt->execute();
+            $languages = $stmt->fetchAll();
+
+            $dishes[$i++] = new Plat($result['id_dish'], $result['alias'], $languages, $result['course_pos'], $allergens, $result['tag'], $result['cost_price'], $result['net_price']);
+        }
+        return $dishes;
 
     }
 }

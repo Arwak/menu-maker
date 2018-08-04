@@ -31,7 +31,7 @@ class LandingPageController
     public function saveDishAction(Request $request, Response $response, array $args)
     {
         if (isset($_POST['cat_name']) && isset($_POST['esp_name']) &&
-            isset($_POST['ordre_plat']) && isset($_POST['tag']) && isset($_POST['cost_price'])
+            isset($_POST['ordre_plat']) && isset($_POST['tag'])
             ) {
 
             if (!isset($_POST['alias']) || strlen($_POST['alias']) < 1) {
@@ -40,24 +40,31 @@ class LandingPageController
                 $alias = $_POST['alias'];
             }
 
-
-            $names[0] = $_POST['cat_name'];
-            $names[1] = $_POST['esp_name'];
+            $names[0]['dish_name'] = $_POST['cat_name'];
+            $names[0]['dish_description'] = $_POST['cat_name'];
+            $names[0]['id_language'] = 1;
+            $names[1]['dish_name']  = $_POST['esp_name'];
+            $names[1]['dish_description'] = $_POST['esp_name'];
+            $names[1]['id_language'] = 2;
 
             if (isset($_POST['eng_name'])) {
-                $names[2] = $_POST['eng_name'];
+                $names[2]['dish_name']  = $_POST['eng_name'];
+                $names[2]['dish_description'] = $_POST['eng_name'];
+                $names[2]['id_language'] = 3;
             }
-
+            $allergens[0] = null;
             $j = 0;
             for ($i = 0; $i < 15; $i++) {
                 if ( isset($_POST[$i]))
                     $allergens[$j++] = $i;
             }
 
-            $plat = new Plat($_POST['id'], $alias, $names, $_POST['ordre_plat'], $allergens, $_POST['tag'], $_POST['cost_price']);
+            $plat = new Plat($_POST['id'], $alias, $names, $_POST['ordre_plat'], $allergens, $_POST['tag'], strlen($_POST['cost_price'])==0?null:$_POST['cost_price'], strlen($_POST['net_price'])==0?null:$_POST['net_price']);
 
             $plat_useCase = $this->container->get('post_plat_use_case');
 
+
+            /*
             if ($_POST['id'] != 0) {
 
                 if ($plat_useCase->update_dish($plat)) {
@@ -74,15 +81,26 @@ class LandingPageController
 
                 }
 
-            }
+            }*/
+            $plat_useCase->save_dish($plat);
 
 
 
+            $plat_useCase = $this->container->get('post_plat_use_case');
+            $dishes = $plat_useCase->get_dishes();
 
+            return $this->container->get('view')->render($response, 'gestionarPlats.twig', [
+                'dishes' => $dishes
 
-            return "OK";
+            ]);
         } else {
-            return "KO";
+            $plat_useCase = $this->container->get('post_plat_use_case');
+            $dishes = $plat_useCase->get_dishes();
+
+            return $this->container->get('view')->render($response, 'gestionarPlats.twig', [
+                'dishes' => $dishes
+
+            ]);
         }
 
 

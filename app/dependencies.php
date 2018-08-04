@@ -39,8 +39,8 @@ $container['plat_repository'] = function($container) {
 };
 
 $container['post_plat_use_case'] = function ($container) {
-    $useCase = new App\model\useCase\PostFileUseCase(
-        $container->get('file_repository')
+    $useCase = new App\model\useCase\PostPlatUseCase(
+        $container->get('plat_repository')
     );
 
     return $useCase;

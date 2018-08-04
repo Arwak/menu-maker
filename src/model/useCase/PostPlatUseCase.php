@@ -32,4 +32,15 @@ class PostPlatUseCase
         return $this->repo->save_dish($plat);
     }
 
+    public function update_dish(Plat $plat)
+    {
+        return $this->repo->update_dish($plat);
+    }
+
+
+    public function get_dishes()
+    {
+        return $this->repo->get_dishes();
+    }
+
 }

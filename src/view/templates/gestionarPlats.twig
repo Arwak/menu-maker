@@ -224,6 +224,34 @@
             </td>
         </tr>
 
+        <tr>
+            <td>
+
+                <div class="w3-col s3 w3-blue w3-center w3-border">
+                    <div class="w3-row w3-margin">Preu de venda
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <label>EUR.</label>
+                            <input name="net_price" class="w3-input w3-center w3-border" type="number" placeholder="00.00">
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
     </table>
 </form>
 {% endblock %}
@@ -235,22 +263,21 @@
 
 
 {% block bar_top_buttons %}
-    <input class="w3-input w3-border w3-round w3-red w3-hover-white" placeholder="Buscar plats" type="text">
+    <input class="w3-input w3-border w3-round w3-red w3-hover-white" id="searchInput" onkeyup="search()" placeholder="Buscar plats" type="text">
+
 {% endblock %}
 {% block bar_mid_buttons %}
 
-    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Padding</a>
-    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 2</a>
-    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat amb un nom llarg de la ostia com ara caragols a la llauna metalica fets a la brasa amb pebre sal i oli</a>
-    <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat 4</a>
-    {% for i in 5..50 %}
-        <a href="#" class="w3-bar-item w3-button w3-red w3-hover-white">Plat {{ i }}</a>
-    {% endfor %}
+    <ul id="dish_list">
+        <li href="#" class="w3-bar-item w3-button w3-red w3-hover-white"><a></a></li>
+        {% for dish in dishes %}
+            <li href="#" class="w3-bar-item w3-button w3-red w3-hover-white"><a>{{ dish.get_alias }}</a></li>
+        {% endfor %}
+
+    </ul>
 {% endblock %}
 {% block bar_bottom_buttons %}
-    <a href="#" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue"> <i class="fa fa-plus-circle "></i> Nou Plat  </a>
+    <a href="#" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue"> <i class="fa fa-plus-circle "></i> Nou Plat </a>
 {% endblock %}
 
 {% block scripts %}

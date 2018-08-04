@@ -33,7 +33,13 @@ class LoginPageController
 
     public function gestioPlatsAction(Request $request, Response $response, array $args)
     {
-        return $this->container->get('view')->render($response, 'gestionarPlats.twig', []);
+        $plat_useCase = $this->container->get('post_plat_use_case');
+        $dishes = $plat_useCase->get_dishes();
+
+        return $this->container->get('view')->render($response, 'gestionarPlats.twig', [
+            'dishes' => $dishes
+
+        ]);
     }
 
 

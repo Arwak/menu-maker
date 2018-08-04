@@ -6,13 +6,13 @@ USE MenuMaker;
 CREATE TABLE dish (
 
     id_dish INT AUTO_INCREMENT,
-    alias TEXT,
+    alias VARCHAR(255),
     cost_price FLOAT,
     benefits FLOAT,
     net_price FLOAT,
     course_pos INT,
     tag TEXT,
-    PRIMARY KEY (id_dish)
+    PRIMARY KEY (id_dish, alias)
 );
 
 
@@ -44,15 +44,15 @@ CREATE TABLE language (
 
 );
 
-CREATE TABLE dish_lenguage (
+CREATE TABLE dish_language (
 
 	id_dish INT,
     id_language INT,
     dish_name TEXT,
     dish_description TEXT,
     PRIMARY KEY (id_dish, id_language),
-    FOREIGN KEY (id_dish) REFERENCES dish (id_dish),
-    FOREIGN KEY (id_language) REFERENCES language (id_language)
+    FOREIGN KEY (id_dish) REFERENCES dish (id_dish)  ON DELETE CASCADE,
+    FOREIGN KEY (id_language) REFERENCES language (id_language) ON DELETE CASCADE
 
 );
 
@@ -63,8 +63,8 @@ CREATE TABLE dish_allergen (
 	id_dish INT,
     id_allergen INT,
     PRIMARY KEY (id_dish, id_allergen),
-    FOREIGN KEY (id_dish) REFERENCES dish (id_dish),
-    FOREIGN KEY (id_allergen) REFERENCES allergen (id_allergen)
+    FOREIGN KEY (id_dish) REFERENCES dish (id_dish) ON DELETE CASCADE,
+    FOREIGN KEY (id_allergen) REFERENCES allergen (id_allergen) ON DELETE CASCADE
 
 );
 
@@ -79,8 +79,8 @@ CREATE TABLE menu_language (
     description TEXT,
 
     PRIMARY KEY (id_menu, id_language),
-    FOREIGN KEY (id_menu) REFERENCES menu (id_menu),
-    FOREIGN KEY (id_language) REFERENCES language (id_language)
+    FOREIGN KEY (id_menu) REFERENCES menu (id_menu) ON DELETE CASCADE,
+    FOREIGN KEY (id_language) REFERENCES language (id_language) ON DELETE CASCADE
 );
 
 CREATE TABLE menu_dish (
@@ -88,8 +88,8 @@ CREATE TABLE menu_dish (
 	  id_dish INT,
     id_menu INT,
     PRIMARY KEY (id_dish, id_menu),
-    FOREIGN KEY (id_menu) REFERENCES menu (id_menu),
-    FOREIGN KEY (id_dish) REFERENCES dish (id_dish)
+    FOREIGN KEY (id_menu) REFERENCES menu (id_menu) ON DELETE CASCADE,
+    FOREIGN KEY (id_dish) REFERENCES dish (id_dish) ON DELETE CASCADE
 
 );
 
@@ -98,7 +98,7 @@ CREATE TABLE photo (
     id_dish INT,
     path TEXT,
     PRIMARY KEY (id_dish),
-    FOREIGN KEY (id_dish) REFERENCES dish (id_dish)
+    FOREIGN KEY (id_dish) REFERENCES dish (id_dish) ON DELETE CASCADE
 
 );
 
