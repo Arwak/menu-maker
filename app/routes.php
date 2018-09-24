@@ -22,6 +22,10 @@ $app->get(
     '/crearMenu',
     'App\controller\LoginPageController:crearMenuAction'
 );
+$app->get(
+    '/crearMenu/{what}',
+    'App\controller\LoginPageController:crearMenuAction'
+);
 
 
 $app->get(
@@ -37,5 +41,11 @@ $app->post(
 $app->post(
     '/save_dish',
     'App\controller\LandingPageController:saveDishAction'
+);
+
+
+$app->post(
+    '/load_dish',
+    'App\controller\LandingPageController:loadDishAction'
 );
 

@@ -28,7 +28,40 @@ class LoginPageController
 
     public function crearMenuAction(Request $request, Response $response, array $args)
     {
-        return $this->container->get('view')->render($response, 'crearMenu.twig', []);
+
+        $plat_useCase = $this->container->get('post_plat_use_case');
+        if (isset($args["what"])) {
+            switch ($args["what"]) {
+
+                case "segons":
+                    $title = "Segons Plats";
+                    $dishes = $plat_useCase->get_dishes_with_option(2);
+                    break;
+                case "postres":
+                    $title = "Postres";
+                    $dishes = $plat_useCase->get_dishes_with_option(3);
+                    break;
+                case "sugg":
+                    $title = "Plats de Suggeriments";
+                    $dishes = $plat_useCase->get_dishes_with_option(4);
+                    break;
+                case "vins":
+                    $title = "Vins";
+                    break;
+                case "primers":
+                    $title = "Primers Plats";
+                    $dishes = $plat_useCase->get_dishes_with_option(1);
+                default:
+
+                    break;
+
+            }
+        } else {
+            $title = "Primers Plats";
+            $dishes = $plat_useCase->get_dishes_with_option(1);
+        }
+
+        return $this->container->get('view')->render($response, 'crearMenu.twig', ['title' => $title, 'dishes' => $dishes]);
     }
 
     public function gestioPlatsAction(Request $request, Response $response, array $args)

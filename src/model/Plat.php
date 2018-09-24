@@ -118,5 +118,24 @@ class Plat
         return $this->allergens;
     }
 
+    /**
+     * @return array
+     */
+    public function make_array() {
+
+        return array(
+            "id_dish" => $this->id_dish,
+            "alias" => $this->alias,
+            "cost_price" => $this->cost_price,
+            "benefits" => $this->benefits,
+            "net_price" => $this->net_price,
+            "course_pos" => $this->course_pos,
+            "tag" => $this->tag,
+            "allergens" => $this->allergens,
+            "languages" => $this->languages);
+
+
+    }
+
 
 }

@@ -5,7 +5,7 @@
 
 {% block main_content %}
 <form action="/save_dish" method="post" id="dish_info">
-    <input name="id" value="1" type="hidden">
+    <input id="id" name="id" value="1" type="hidden">
     <table>
 
         <tr>
@@ -20,7 +20,7 @@
                 <table>
                     <tr>
                         <td>
-                            <input name="alias" class="w3-input w3-center w3-border" placeholder="Alias" type="text">
+                            <input id="alias" name="alias" class="w3-input w3-center w3-border" placeholder="Alias" type="text">
                         </td>
                     </tr>
                 </table>
@@ -40,13 +40,13 @@
                 <table>
                     <tr>
                         <td>
-                            <input name="cat_name" class="w3-input w3-center w3-border" placeholder="Nom amb català" type="text">
+                            <input id="cat_name" name="cat_name" class="w3-input w3-center w3-border" placeholder="Nom amb català" type="text">
                         </td>
                         <td>
-                            <input name="esp_name" class="w3-input w3-center w3-border" placeholder="Nombre en español" type="text">
+                            <input id="esp_name" name="esp_name" class="w3-input w3-center w3-border" placeholder="Nombre en español" type="text">
                         </td>
                         <td>
-                            <input name="eng_name" class="w3-input w3-center w3-border" placeholder="Name in english" type="text">
+                            <input id="eng_name" name="eng_name" class="w3-input w3-center w3-border" placeholder="Name in english" type="text">
                         </td>
                     </tr>
                 </table>
@@ -66,19 +66,19 @@
                 <table>
                     <tr>
                         <td>
-                            <input class="w3-radio" type="radio" name="ordre_plat" value="1">
+                            <input id="ordre_plat_1" class="w3-radio" type="radio" name="ordre_plat" value="1">
                             <label>1r</label>
                         </td>
                         <td>
-                            <input class="w3-radio" type="radio" name="ordre_plat" value="2">
+                            <input id="ordre_plat_2" class="w3-radio" type="radio" name="ordre_plat" value="2">
                             <label>2n</label>
                         </td>
                         <td>
-                            <input class="w3-radio" type="radio" name="ordre_plat" value="3">
+                            <input id="ordre_plat_3" class="w3-radio" type="radio" name="ordre_plat" value="3">
                             <label>3r</label>
                         </td>
                         <td>
-                            <input class="w3-radio" type="radio" name="ordre_plat" value="4">
+                            <input id="ordre_plat_4" class="w3-radio" type="radio" name="ordre_plat" value="4">
                             <label>Suggeriment</label>
                         </td>
                     </tr>
@@ -100,63 +100,63 @@
 
                     <tr>
                         <td>
-                            <input name="1" class="w3-check" type="checkbox">
+                            <input id="al_1" name="1" class="w3-check" type="checkbox">
                             <label>Gluten - G</label>
                         </td>
                         <td>
-                            <input name="2" class="w3-check" type="checkbox">
+                            <input id="al_2" name="2" class="w3-check" type="checkbox">
                             <label>Crustàci - C</label>
                         </td>
                         <td>
-                            <input name="3" class="w3-check" type="checkbox">
+                            <input id="al_3" name="3" class="w3-check" type="checkbox">
                             <label>Ou - O</label>
                         </td>
                         <td>
-                            <input name="4" class="w3-check" type="checkbox">
+                            <input id="al_4" name="4" class="w3-check" type="checkbox">
                             <label>Peix - P</label>
                         </td>
                         <td>
-                            <input name="5" class="w3-check" type="checkbox">
+                            <input id="al_5" name="5" class="w3-check" type="checkbox">
                             <label>Cacauet - C1</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input name="6" class="w3-check" type="checkbox">
+                            <input id="al_6" name="6" class="w3-check" type="checkbox">
                             <label>Soja - S1</label>
                         </td>
                         <td>
-                            <input name="7" class="w3-check" type="checkbox">
+                            <input id="al_7" name="7" class="w3-check" type="checkbox">
                             <label>Làctics - L</label>
                         </td>
                         <td>
-                            <input name="8" class="w3-check" type="checkbox">
+                            <input id="al_8" name="8" class="w3-check" type="checkbox">
                             <label>Fruits closca - F</label>
                         </td>
                         <td>
-                            <input name="9" class="w3-check" type="checkbox">
+                            <input id="al_9" name="9" class="w3-check" type="checkbox">
                             <label>Àpit - A</label>
                         </td>
                         <td>
-                            <input name="10" class="w3-check" type="checkbox">
+                            <input id="al_10" name="10" class="w3-check" type="checkbox">
                             <label>Mostassa - M</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input name="11" class="w3-check" type="checkbox">
+                            <input id="al_11" name="11" class="w3-check" type="checkbox">
                             <label>Sésam - S2</label>
                         </td>
                         <td>
-                            <input name="12" class="w3-check" type="checkbox">
+                            <input id="al_12" name="12" class="w3-check" type="checkbox">
                             <label>Tramussos - T</label>
                         </td>
                         <td>
-                            <input name="13" class="w3-check" type="checkbox">
+                            <input id="al_13" name="13" class="w3-check" type="checkbox">
                             <label>Mol·luscs - M</label>
                         </td>
                         <td>
-                            <input name="14" class="w3-check" type="checkbox">
+                            <input id="al_14" name="14" class="w3-check" type="checkbox">
                             <label>Diòxid de sofre i sulfits - D + S</label>
                         </td>
 
@@ -179,7 +179,7 @@
 
                     <tr>
                         <td>
-                            <select name="tag" class="w3-select w3-border w3-center">
+                            <select id="tag" name="tag" class="w3-select w3-border w3-center">
                                 <option>Altres</option>
                                 <option>Carn</option>
                                 <option>Peix</option>
@@ -209,7 +209,7 @@
                     <tr>
                         <td>
                             <label>EUR.</label>
-                            <input name="cost_price" class="w3-input w3-center w3-border" type="number" placeholder="00.00">
+                            <input id="cost_price" name="cost_price" class="w3-input w3-center w3-border" type="number" placeholder="00.00">
 
                         </td>
                         <td>
@@ -237,7 +237,7 @@
                     <tr>
                         <td>
                             <label>EUR.</label>
-                            <input name="net_price" class="w3-input w3-center w3-border" type="number" placeholder="00.00">
+                            <input id="net_price" name="net_price" class="w3-input w3-center w3-border" type="number" placeholder="00.00">
 
                         </td>
                         <td>
@@ -257,7 +257,7 @@
 {% endblock %}
 
 {% block main_buttons %}
-    <a href="#" class=" w3-bar-item w3-button w3-red w3-border w3-hover-dark-gray">Cancelar</a>
+    <a onclick="load_same_dish()" class=" w3-bar-item w3-button w3-red w3-border w3-hover-dark-gray">Cancelar</a>
     <a onclick="new_dish()" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue">Guardar</a>
 {% endblock %}
 
@@ -271,13 +271,13 @@
     <ul id="dish_list">
         <li href="#" class="w3-bar-item w3-button w3-red w3-hover-white"><a></a></li>
         {% for dish in dishes %}
-            <li href="#" class="w3-bar-item w3-button w3-red w3-hover-white"><a>{{ dish.get_alias }}</a></li>
+            <li onclick="load_dish({{ dish.get_id_Dish }})" class="w3-bar-item w3-button w3-red w3-hover-white"><a>{{ dish.get_alias }}</a></li>
         {% endfor %}
 
     </ul>
 {% endblock %}
 {% block bar_bottom_buttons %}
-    <a href="#" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue"> <i class="fa fa-plus-circle "></i> Nou Plat </a>
+    <a onclick="create_new()" class=" w3-bar-item w3-button w3-red w3-border w3-hover-blue"> <i class="fa fa-plus-circle "></i> Nou Plat </a>
 {% endblock %}
 
 {% block scripts %}

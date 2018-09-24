@@ -98,19 +98,78 @@ class DoctrinePlatRepository implements PlatRepository
         $i = 0;
         foreach ($results as $result) {
 
-            $sql = "SELECT id_allergen FROM dish_allergen WHERE id_dish = " . $result['id_dish'] . ";";
+            $sql = "SELECT id_allergen FROM dish_allergen WHERE id_dish = :id";
             $stmt = $this->database->prepare($sql);
+            $stmt->bindValue("id", (int)$result['id_dish'], 'integer');
             $stmt->execute();
             $allergens = $stmt->fetchAll();
 
-            $sql = "SELECT * FROM dish_language WHERE id_dish = " . $result['id_dish'] . ";";
+            $sql = "SELECT * FROM dish_language WHERE id_dish = :id;";
             $stmt = $this->database->prepare($sql);
+            $stmt->bindValue("id", (int)$result['id_dish'], 'integer');
             $stmt->execute();
             $languages = $stmt->fetchAll();
 
             $dishes[$i++] = new Plat($result['id_dish'], $result['alias'], $languages, $result['course_pos'], $allergens, $result['tag'], $result['cost_price'], $result['net_price']);
         }
         return $dishes;
+
+    }
+
+    public function get_dishes_with_option($postion)
+    {
+        $sql = "SELECT * FROM dish WHERE course_pos = :pos";
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindValue("pos",$postion, 'integer');
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+
+        $dishes[0] = null;
+        $i = 0;
+        foreach ($results as $result) {
+
+            $sql = "SELECT id_allergen FROM dish_allergen WHERE id_dish = :id";
+            $stmt = $this->database->prepare($sql);
+            $stmt->bindValue("id", (int)$result['id_dish'], 'integer');
+            $stmt->execute();
+            $allergens = $stmt->fetchAll();
+
+            $sql = "SELECT * FROM dish_language WHERE id_dish = :id;";
+            $stmt = $this->database->prepare($sql);
+            $stmt->bindValue("id", (int)$result['id_dish'], 'integer');
+            $stmt->execute();
+            $languages = $stmt->fetchAll();
+
+            $dishes[$i++] = new Plat($result['id_dish'], $result['alias'], $languages, $result['course_pos'], $allergens, $result['tag'], $result['cost_price'], $result['net_price']);
+        }
+        return $dishes;
+
+    }
+
+    public function get_dish($id)
+    {
+        $sql = "SELECT * FROM dish WHERE id_dish = :id";
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindValue("id", (int)$id, 'integer');
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        $sql = "SELECT id_allergen FROM dish_allergen WHERE id_dish = :id;";
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindValue("id", (int)$id, 'integer');
+        $stmt->execute();
+        $allergens = $stmt->fetchAll();
+
+        $sql = "SELECT * FROM dish_language WHERE id_dish = :id;";
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindValue("id", (int)$id, 'integer');
+        $stmt->execute();
+        $languages = $stmt->fetchAll();
+
+
+        $dish = new Plat($result['id_dish'], $result['alias'], $languages, $result['course_pos'], $allergens, $result['tag'], $result['cost_price'], $result['net_price']);
+
+        return $dish;
 
     }
 }

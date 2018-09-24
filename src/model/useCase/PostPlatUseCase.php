@@ -43,4 +43,16 @@ class PostPlatUseCase
         return $this->repo->get_dishes();
     }
 
+
+    public function get_dish($id)
+    {
+        return $this->repo->get_dish($id);
+    }
+
+
+    public function get_dishes_with_option($postion)
+    {
+        return $this->repo->get_dishes_with_option($postion);
+    }
+
 }

@@ -30,6 +30,8 @@ class LandingPageController
 
     public function saveDishAction(Request $request, Response $response, array $args)
     {
+        var_dump($_POST);
+        var_dump($args);
         if (isset($_POST['cat_name']) && isset($_POST['esp_name']) &&
             isset($_POST['ordre_plat']) && isset($_POST['tag'])
             ) {
@@ -89,20 +91,33 @@ class LandingPageController
             $plat_useCase = $this->container->get('post_plat_use_case');
             $dishes = $plat_useCase->get_dishes();
 
-            return $this->container->get('view')->render($response, 'gestionarPlats.twig', [
-                'dishes' => $dishes
-
-            ]);
+            $result = array("new_dish" => var_dump($dishes));
+            echo json_encode($result);
+            //return $this->container->get('view')->render($response, 'gestionarPlats.twig', ['dishes' => $dishes]);
         } else {
             $plat_useCase = $this->container->get('post_plat_use_case');
             $dishes = $plat_useCase->get_dishes();
-
-            return $this->container->get('view')->render($response, 'gestionarPlats.twig', [
-                'dishes' => $dishes
-
-            ]);
+            $result = array("new_dish" => $dishes[0]);
+            echo json_encode($result);
+            //return $this->container->get('view')->render($response, 'gestionarPlats.twig', ['dishes' => $dishes]);
         }
 
+
+    }
+
+
+
+
+    public function loadDishAction(Request $request, Response $response, array $args)
+    {
+
+        if (isset($_POST["id"])) {
+            $id = $_POST["id"];
+            $plat_useCase = $this->container->get('post_plat_use_case');
+            $dish = $plat_useCase->get_dish($id);
+            echo json_encode($dish->make_array());
+
+        }
 
     }
 
